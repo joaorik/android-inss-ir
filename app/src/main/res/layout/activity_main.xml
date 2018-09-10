@@ -13,10 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="13dp"
         android:text="Dependetes:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="144dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtSal" />
 
     <TextView
         android:id="@+id/textView2"
@@ -24,10 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="36dp"
         android:text="Salário Bruto R$"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="36dp" />
+        app:layout_constraintEnd_toEndOf="@+id/edtSal"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btCalc"
@@ -35,10 +39,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/edtSal"
+        android:layout_marginBottom="29dp"
+        android:layout_marginStart="28dp"
         android:onClick="onClickBtCalc"
         android:text="Calcular"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="270dp" />
+        app:layout_constraintBottom_toTopOf="@+id/txtSal"
+        app:layout_constraintStart_toStartOf="@+id/txtSal" />
 
     <TextView
         android:id="@+id/txtSal"
@@ -46,30 +52,35 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btCalc"
+        android:layout_marginBottom="134dp"
         android:text="Salário Líquido:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="347dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edtDep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="numberSigned"
         android:gravity="center"
+        android:inputType="numberSigned"
         android:text="0"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="190dp" />
+        app:layout_constraintStart_toStartOf="@+id/edtSal"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/edtSal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
         android:ems="10"
         android:gravity="center"
         android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="85dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </android.support.constraint.ConstraintLayout>
