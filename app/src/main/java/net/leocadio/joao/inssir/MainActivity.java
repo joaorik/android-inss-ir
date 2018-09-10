@@ -20,24 +20,33 @@ public class MainActivity extends Activity {
 
         EditText edtSal = (EditText) findViewById(R.id.edtSal);
 
+        EditText edtDep = (EditText) findViewById(R.id.edtDep);
+
         double vlBruto = Double.parseDouble(edtSal.getText().toString());
 
         double vlSemInss = getINSS(vlBruto);
 
         double vlLiquido = vlBruto - getINSS(vlBruto) - getIR(vlSemInss);
 
-        double vlIR = getIR(vlBruto);
+        double vlBrutoINSS = vlBruto - getINSS(vlBruto);
+
+        double vlIR = getIR(vlBrutoINSS);
+
+        int dependent = Integer.parseInt(edtDep.getText().toString());
+
+        double vlDesconto = getDependente(vlBruto, dependent);
 
         TextView txtSal = (TextView) findViewById(R.id.txtSal);
 
         NumberFormat textoFormatado = NumberFormat.getCurrencyInstance();
 
-        txtSal.setText("INSS: "+ textoFormatado.format(vlSemInss) + "\n\r");
-        txtSal.setText("IR: "+ textoFormatado.format(vlIR) + "\n\r");
-        txtSal.setText("Salário Líquido: "+ textoFormatado.format(vlLiquido) + "\n\r");
+        txtSal.setText("INSS: " + textoFormatado.format(vlSemInss) + "\n\r"
+                + "IR: " + textoFormatado.format(vlIR) + "\n\r"
+                + "Salário Líquido: " + textoFormatado.format(vlLiquido) + "\n\r"
+                + "Desconto dependente: " + textoFormatado.format(vlDesconto));
     }
 
-    public double getINSS(double vlBruto){
+    public double getINSS(double vlBruto) {
 
         double result = 0;
 
@@ -54,22 +63,36 @@ public class MainActivity extends Activity {
         return result;
     }
 
-    public double getIR(double vlSemInss){
+    public double getIR(double vlInss) {
 
-        double result = 0.0;
+        double result = 0;
 
-        if (vlSemInss > 0.00 && vlSemInss <= 1903.98) {
+        if (vlInss > 0.0 && vlInss <= 1903.98) {
             result = 0;
-        } else if (vlSemInss >= 1903.99 && vlSemInss <= 2826.65) {
-            result = ((vlSemInss * 7.5)/100)-142.80;
-        } else if (vlSemInss >= 2826.66 && vlSemInss <= 3751.05) {
-            result = ((vlSemInss * 15)/100)-354.80;
-        } else if (vlSemInss >= 3751.06 && vlSemInss <= 4664.68) {
-            result = ((vlSemInss * 22.5)/100)-636.13;
-        } else {
-            result = ((vlSemInss * 27.5)/100)-869.36;
+        } else if (vlInss >= 1903.99 && vlInss <= 2826.65) {
+            result = ((vlInss * 7.5)/100)-142.80;
+        } else if (vlInss >= 3751.66 && vlInss <= 3751.05) {
+            result = ((vlInss * 15)/100)-354.80;
+        } else if (vlInss >= 3751.06 && vlInss <= 4664.68) {
+            result = ((vlInss * 22.5)/100)-636.13;
+        } else if (vlInss >= 4664.69 && vlInss >= 4664.68) {
+            result = ((vlInss * 27.5)/100)-869.36;
         }
 
         return result;
     }
+
+    public double getDependente(double salario, int dependente) {
+
+        double result = 0;
+
+        if (salario <= 877.67) {
+            result = dependente * 45.00;
+        } else if (salario >= 877.68 && salario <= 1319.18) {
+            result = dependente * 31.71;
+        }
+
+        return result;
+    }
+
 }
