@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">INSS IR</string>
+    <string name="salario_bruto">Salário Bruto R$</string>
+    <string name="dependentes">Dependentes:</string>
+    <string name="zero">0</string>
+    <string name="calcular">Calcular</string>
+    <string name="salario_liquido">Salário Líquido:</string>
 </resources>
